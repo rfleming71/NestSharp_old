@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{ABA37BC6-0B44-4AE9-91E1-AAE455773508}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NestSharp.vsmdi
@@ -45,6 +47,16 @@ Global
 		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|x86.ActiveCfg = Release|Any CPU
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|x86.ActiveCfg = Debug|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|x86.Build.0 = Debug|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Release|Any CPU.ActiveCfg = Release|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Release|Mixed Platforms.Build.0 = Release|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Release|x86.ActiveCfg = Release|x86
+		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

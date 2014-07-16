@@ -163,6 +163,32 @@
         }
 
         /// <summary>
+        /// Sets the away state
+        /// </summary>
+        /// <param name="structureId">Structure ID to set</param>
+        /// <param name="isAway"></param>
+        /// <returns></returns>
+        public AwayState SetAwayState(string structureId, AwayState newState)
+        {
+            if (newState == AwayState.AutoAway)
+            {
+                throw new NestException("Invalid value for away. Only 'Home' and 'Away' are permitted values.");
+            }
+
+            string url = string.Format("structures/{0}", structureId);
+            JObject response = PostResponse<object>(url, new { away = newState == AwayState.Away ? "away" : "home" }) as JObject;
+            switch ((string)response["away"])
+            {
+                case "away":
+                    return AwayState.Away;
+                case "auto-away":
+                    return AwayState.AutoAway;
+            }
+
+            return AwayState.Home;
+        }
+
+        /// <summary>
         /// Posts a given object to the API
         /// </summary>
         /// <typeparam name="T">Type to process the response as</typeparam>
