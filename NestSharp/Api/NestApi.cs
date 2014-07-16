@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net.Http;
     using System.Text;
     using NestSharp.Api.Responses;
     using NestSharp.Api.Responses.Auth;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using System.IO;
+    using System.Net;
 
     /// <summary>
     /// API for talking to Nest
@@ -19,11 +20,6 @@
         /// End point to hit for the API
         /// </summary>
         private const string NestDevEndPoint = "https://developer-api.nest.com/";
-
-        /// <summary>
-        /// Client used to hit the API
-        /// </summary>
-        private HttpClient _webClient = new HttpClient() { BaseAddress = new Uri(NestDevEndPoint) };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NestApi" /> class.
@@ -49,14 +45,18 @@
             const string UrlFormat = "https://api.home.nest.com/oauth2/access_token?code={0}&client_id={1}&client_secret={2}&grant_type=authorization_code";
 
             string authUrl = string.Format(UrlFormat, pinCode, clientId, clientSecret);
-            var task = _webClient.PostAsync(authUrl, null);
-            task.Wait();
 
-            var resultTask = task.Result.Content.ReadAsStringAsync();
-            resultTask.Wait();
-            string result = resultTask.Result;
+            HttpWebRequest request = WebRequest.Create(authUrl) as HttpWebRequest;
+            request.Method = "POST";
 
-            AuthResponse response = JsonConvert.DeserializeObject<AuthResponse>(result);
+            var requestRsponse = request.GetResponse();
+            string responseString;
+            using (TextReader reader = new StreamReader(requestRsponse.GetResponseStream()))
+            {
+                responseString = reader.ReadToEnd();
+            }
+
+            AuthResponse response = JsonConvert.DeserializeObject<AuthResponse>(responseString);
 
             if (!string.IsNullOrWhiteSpace(response.Error))
             {
@@ -64,7 +64,7 @@
                 throw new NestException(message);
             }
 
-            return null;
+            return response.AuthCode;
         }
 
         /// <summary>
@@ -199,17 +199,22 @@
         {
             url = string.Format("{0}.json?auth={1}", url, AuthCode);
             string postBody = JsonConvert.SerializeObject(paramObject);
-            var getTask = _webClient.PutAsync(url, new StringContent(postBody, Encoding.UTF8, "application/json"));
-            getTask.Wait();
 
-            var resultTak = getTask.Result.Content.ReadAsStringAsync();
-            resultTak.Wait();
-            string responseString = resultTak.Result;
+            HttpWebRequest request = WebRequest.Create(NestDevEndPoint + url) as HttpWebRequest;
+            request.Method = "PUT";
 
-            ErrorResponse error = JsonConvert.DeserializeObject<ErrorResponse>(responseString);
-            if (!string.IsNullOrWhiteSpace(error.Error))
+            using (TextWriter writer = new StreamWriter(request.GetRequestStream()))
             {
-                throw new NestException(error.Error);
+                writer.Write(postBody);
+                writer.Flush();
+                writer.Close();
+            }
+
+            var requestRsponse = request.GetResponse();
+            string responseString;
+            using (TextReader reader = new StreamReader(requestRsponse.GetResponseStream()))
+            {
+                responseString = reader.ReadToEnd();
             }
 
             T response = JsonConvert.DeserializeObject<T>(responseString);
@@ -226,18 +231,15 @@
         private T GetResponse<T>(string url)
         {
             url = string.Format("{0}.json?auth={1}", url, AuthCode);
-            var getTask = _webClient.GetAsync(url);
-            getTask.Wait();
 
-            if (!getTask.Result.IsSuccessStatusCode)
+            HttpWebRequest request = WebRequest.Create(NestDevEndPoint + url) as HttpWebRequest;
+            request.Method = "GET";
+            var requestRsponse = request.GetResponse();
+            string responseString;
+            using (TextReader reader = new StreamReader(requestRsponse.GetResponseStream()))
             {
-                string message = string.Format("{0}: {1}", getTask.Result.StatusCode, getTask.Result.ReasonPhrase);
-                throw new NestException(message);
+                responseString = reader.ReadToEnd();
             }
-
-            var resultTak = getTask.Result.Content.ReadAsStringAsync();
-            resultTak.Wait();
-            string responseString = resultTak.Result;
 
             T response = JsonConvert.DeserializeObject<T>(responseString);
 

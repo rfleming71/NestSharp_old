@@ -10,12 +10,13 @@
         /// <summary>
         /// Gets or sets the authorization code
         /// </summary>
-        [JsonProperty("auth_code")]
+        [JsonProperty("access_token")]
         public string AuthCode { get; set; }
 
         /// <summary>
         /// Gets or sets the expire time for the code
         /// </summary>
+        [JsonProperty("excpires_in")]
         public int Expires { get; set; }
 
         /// <summary>
