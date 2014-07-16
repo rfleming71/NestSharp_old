@@ -8,6 +8,7 @@
     using Nest.Api.Responses;
     using Nest.Api.Responses.Auth;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// API for talking to Nest
@@ -129,6 +130,34 @@
             string url = string.Format("structures/{0}/eta", structureId);
             IEta response = PostResponse<Eta>(url, new { trip_id = tripId, estimated_arrival_window_begin = etaWindowStart, estimated_arrival_window_end = etaWindowStop });
             return response;
+        }
+        
+        /// <summary>
+        /// Sets the estimated time of arrival
+        /// </summary>
+        /// <param name="structureId">Structure Identifier</param>
+        /// <param name="isAway">True = away | false = home</param>
+        public float SetThermostatTargetTemperature(string deviceId, TemperatureScale scale, float targetTemperature)
+        {
+            string url = string.Format("devices/thermostats/{0}", deviceId);
+            object setting;
+            if (scale == TemperatureScale.Fahrenheit)
+            {
+                // Round to the nearest 1
+                targetTemperature = (int)Math.Round(targetTemperature);
+                setting = new { target_temperature_f = (int)targetTemperature };
+                object response = PostResponse<object>(url, setting);
+                return (int)((response as JObject)["target_temperature_f"]);
+            }
+            else
+            {
+                // Round to the nearest .5
+                targetTemperature = (float)Math.Round(targetTemperature * 2.0f, MidpointRounding.AwayFromZero);
+                targetTemperature /= 2;
+                setting = new { target_temperature_c = targetTemperature };
+                object response = PostResponse<object>(url, setting);
+                return (float)((response as JObject)["target_temperature_c"]);
+            }
         }
 
         /// <summary>

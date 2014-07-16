@@ -22,15 +22,13 @@
         /// <param name="args">Command line args</param>
         public static void Main(string[] args)
         {
-            string clientSecret = "";
-            string clientId = "";
-            string pinCode = "";
-
             NestApi api = new NestApi();
 
             api.AuthCode = "";
             var response = api.GetAllInformation();
-            string structureId = response.Structures.First().StructureId;
+            string deviceId = response.Devices.Thermostats.First().DeviceId;
+
+            api.SetThermostatTargetTemperature(deviceId, TemperatureScale.Celsius, 23.1f);
 
             response = api.GetAllInformation();
         }
