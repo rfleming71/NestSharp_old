@@ -131,14 +131,6 @@
             IEta response = PostResponse<Eta>(url, new { trip_id = tripId, estimated_arrival_window_begin = etaWindowStart, estimated_arrival_window_end = etaWindowStop });
             return response;
         }
-
-        void foo()
-        {
-            NestApi api = new NestApi();
-            api.AuthCode = "c.AUTHCODE";
-            float setTemperature = api.SetThermostatTargetTemperature("deviceId", TemperatureScale.Fahrenheit, 72);
-            setTemperature = api.SetThermostatTargetTemperature("deviceId", TemperatureScale.Celsius, 23.5f);
-        }
         
         /// <summary>
         /// Sets the target temperature
