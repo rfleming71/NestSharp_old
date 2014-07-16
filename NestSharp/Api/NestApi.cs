@@ -2,14 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
-    using System.Text;
+    using System.Net;
     using NestSharp.Api.Responses;
     using NestSharp.Api.Responses.Auth;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using System.IO;
-    using System.Net;
 
     /// <summary>
     /// API for talking to Nest
@@ -166,8 +165,8 @@
         /// Sets the away state
         /// </summary>
         /// <param name="structureId">Structure ID to set</param>
-        /// <param name="isAway"></param>
-        /// <returns></returns>
+        /// <param name="newState">New away state</param>
+        /// <returns>Set away state</returns>
         public AwayState SetAwayState(string structureId, AwayState newState)
         {
             if (newState == AwayState.AutoAway)
