@@ -128,7 +128,7 @@
             }
 
             string url = string.Format("structures/{0}/eta", structureId);
-            IEta response = PostResponse<Eta>(url, new { trip_id = tripId, estimated_arrival_window_begin = etaWindowStart, estimated_arrival_window_end = etaWindowStop });
+            IEta response = PutResponse<Eta>(url, new { trip_id = tripId, estimated_arrival_window_begin = etaWindowStart, estimated_arrival_window_end = etaWindowStop });
             return response;
         }
         
@@ -148,7 +148,7 @@
                 // Round to the nearest 1
                 targetTemperature = (int)Math.Round(targetTemperature);
                 setting = new { target_temperature_f = (int)targetTemperature };
-                object response = PostResponse<object>(url, setting);
+                object response = PutResponse<object>(url, setting);
                 return (int)(response as JObject)["target_temperature_f"];
             }
             else
@@ -157,7 +157,7 @@
                 targetTemperature = (float)Math.Round(targetTemperature * 2.0f, MidpointRounding.AwayFromZero);
                 targetTemperature /= 2;
                 setting = new { target_temperature_c = targetTemperature };
-                object response = PostResponse<object>(url, setting);
+                object response = PutResponse<object>(url, setting);
                 return (float)(response as JObject)["target_temperature_c"];
             }
         }
@@ -176,7 +176,7 @@
             }
 
             string url = string.Format("structures/{0}", structureId);
-            JObject response = PostResponse<object>(url, new { away = newState == AwayState.Away ? "away" : "home" }) as JObject;
+            JObject response = PutResponse<object>(url, new { away = newState == AwayState.Away ? "away" : "home" }) as JObject;
             switch ((string)response["away"])
             {
                 case "away":
@@ -195,7 +195,7 @@
         /// <param name="url">URL to post to</param>
         /// <param name="paramObject">Object to post</param>
         /// <returns>Response object</returns>
-        private T PostResponse<T>(string url, object paramObject)
+        private T PutResponse<T>(string url, object paramObject)
         {
             url = string.Format("{0}.json?auth={1}", url, AuthCode);
             string postBody = JsonConvert.SerializeObject(paramObject);
