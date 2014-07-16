@@ -31,7 +31,6 @@
             _clientId = clientId;
             _clientSecret = clientSecret;
             _pinCode = pinCode;
-            _authCode = "c.uqF1hysPmePOoTFbdokAWie33ps1pnND8p4Ez1Ai7RynRJGL8YfpGraUh3IFOOGmq8Ocve1ZfJSfTgvnGDgqIPLZeHK3fWmIOS76kWzWeqeCcxG7ESqQzBnrZjxuPPmBLtfM1YJyEZIRgmtN";
         }
 
         /// <summary>
