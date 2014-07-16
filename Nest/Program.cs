@@ -27,8 +27,12 @@
             string pinCode = "";
 
             NestApi api = new NestApi();
-            api.AuthCode = "foo bar baz";
+
+            api.AuthCode = "";
             var response = api.GetAllInformation();
+            string structureId = response.Structures.First().StructureId;
+
+            response = api.GetAllInformation();
         }
     }
 }

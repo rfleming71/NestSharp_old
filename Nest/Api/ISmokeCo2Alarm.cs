@@ -9,7 +9,7 @@
     public interface ISmokeCo2Alarm
     {
         /// <summary>
-        /// Gets or sets the thermostat unique identifier
+        /// Gets the thermostat unique identifier
         /// </summary>
         string DeviceId { get; }
 
@@ -19,33 +19,33 @@
         CultureInfo Locale { get; }
 
         /// <summary>
-        /// Gets or sets the software version
+        /// Gets the software version
         /// </summary>
         string SoftwareVersion { get; }
 
         /// <summary>
-        /// Gets or sets the unique structure identifier
+        /// Gets the unique structure identifier
         /// </summary>
         string StructureId { get; }
 
         /// <summary>
-        /// Gets or sets the Display name of the device
+        /// Gets the Display name of the device
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// Gets or sets the long display name of the device
+        /// Gets the long display name of the device
         /// </summary>
         string LongName { get; }
 
         /// <summary>
-        /// Gets or sets the time of the last successful 
+        /// Gets the time of the last successful 
         /// interaction with the Nest service
         /// </summary>
         DateTime LastConnection { get; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether device is connected 
+        /// Gets a value indicating whether device is connected 
         /// with the Nest Service
         /// </summary>
         bool IsOnline { get; }
@@ -66,7 +66,7 @@
         AlarmState SmokeAlarmState { get; }
 
         /// <summary>
-        /// Gets or sets the device status by color in the Nest app UI
+        /// Gets the device status by color in the Nest app UI
         /// </summary>
         string UiColorState { get; }
     }

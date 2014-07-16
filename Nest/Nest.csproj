@@ -80,8 +80,10 @@
     <Compile Include="Api\IStructure.cs" />
     <Compile Include="Api\NestApi.cs" />
     <Compile Include="Api\IThermostat.cs" />
+    <Compile Include="Api\Responses\Auth\AuthResponse.cs" />
     <Compile Include="Api\Responses\Devices.cs" />
     <Compile Include="Api\IDevices.cs" />
+    <Compile Include="Api\Responses\ErrorResponse.cs" />
     <Compile Include="Api\Responses\Eta.cs" />
     <Compile Include="Api\IEta.cs" />
     <Compile Include="Api\INestResponse.cs" />
@@ -90,8 +92,9 @@
     <Compile Include="Api\Responses\Structure.cs" />
     <Compile Include="Api\Responses\Thermostat.cs" />
     <Compile Include="Api\TemperatureScale.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="NestException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

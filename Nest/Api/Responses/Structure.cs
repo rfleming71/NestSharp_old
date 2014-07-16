@@ -61,7 +61,7 @@
         public string AwayString { get; set; }
 
         /// <summary>
-        /// Gets or sets the structure state
+        /// Gets the structure state
         /// </summary>
         public AwayState Away
         {

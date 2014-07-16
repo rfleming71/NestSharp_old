@@ -13,7 +13,7 @@
         /// Initializes a new instance of the <see cref="Devices" /> class.
         /// </summary>
         /// <param name="thermostats">Thermostats in the system</param>
-        /// <param name="smokeCoAlarms">Smoke/CO2 alarms in the system</param>
+        /// <param name="smoke_co_alarms">Smoke/CO2 alarms in the system</param>
         [JsonConstructor]
         internal Devices(Dictionary<string, Thermostat> thermostats, Dictionary<string, SmokeCo2Alarm> smoke_co_alarms)
         {

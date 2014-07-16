@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Nest.Api
+﻿namespace Nest.Api
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Structure information
     /// </summary>

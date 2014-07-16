@@ -1,11 +1,8 @@
 ﻿namespace Nest.Api.Responses
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Newtonsoft.Json;
     using System.Globalization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Internal response object from Nest

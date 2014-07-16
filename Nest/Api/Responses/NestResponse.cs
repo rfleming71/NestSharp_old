@@ -14,7 +14,7 @@
         /// Initializes a new instance of the <see cref="NestResponse" /> class.
         /// </summary>
         /// <param name="devices">Devices in the system</param>
-        /// <param name="structures">Devices in the system</param>
+        /// <param name="structures">Structures in the system</param>
         public NestResponse(Devices devices, Dictionary<string, Structure> structures)
         {
             Devices = devices;

@@ -1,5 +1,4 @@
-﻿
-namespace Nest.Api
+﻿namespace Nest.Api
 {
     using System;
     using System.Collections.Generic;
