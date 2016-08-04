@@ -7,21 +7,37 @@ Usage
 =========
 API requires that you create a client on a Nest Developer account before using it. See [Nest Dev Clients]
 
-**Generating a authorization code from a pin**
+**Build API from a pin**
 ```C#
 string clientId = "clientId";
 string clientSecert = "secret";
 string pin = "PINPIN";
-NestApi api = new NestApi();
-string authCode = api.GetAuthorizationCode(clientId, clientSecert, pin);
+INestApi nestSharp = await NestSharpBuilder.Authorize(clientSecert, clientId, pin);
+```
+**Build API from existing AccessToken**
+```C#
+INestApi nestSharp = NestApiBuilder.WithExistingAccessToken("c.sEmlsiDj9Ssgna0W8MiAQIolv30qguUCv7bXTuUAyReaS30apETDTNGAV2rvkGRuLeUb7o8M9oGBXH7PHShmD9OLS1hqp0FW3JcDlag2WIy0jIPFDo1ArfItpNLIeToQazSG62AOHXhFl6Wt");
 ```
 
 **Setting thermostat target temperature**
 ```C#
-NestApi api = new NestApi();
-api.AuthCode = "c.AUTHCODE";
-float setTemperature = api.SetThermostatTargetTemperature("deviceId", TemperatureScale.Fahrenheit, 72);
-setTemperature = api.SetThermostatTargetTemperature("deviceId", TemperatureScale.Celsius, 23.5f);
+var devices = await nestSharp.GetDeviceInformation();
+
+ThermostatRequest request = new ThermostatRequest();
+request.DeviceId = devices.Thermostats.First().Value.DeviceId;
+request.TemperatureScale = NestSharp.Api.TemperatureScale.Fahrenheit;
+request.TargetTemperatureFahrenheit = 76;
+await nestSharp.SetThermostat(request);
+```
+
+**Setting home away temperature**
+```C#
+var structures = await nestSharp.GetStructureInformation();
+
+StructureRequest request = new StructureRequest();
+request.StructureId = structures.First().Value.StructureId;
+request.Away = AwayState.Away;
+await nestSharp.SetStructure(request);
 ```
 
 **Nest developer pages**

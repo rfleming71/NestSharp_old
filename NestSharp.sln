@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestSharp", "NestSharp\NestSharp.csproj", "{96F98AA3-27FA-4A96-A4FF-47A32F03CC74}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestSharp.Test", "NestSharp.Test\NestSharp.Test.csproj", "{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B33C34EB-6F67-4914-85B4-E039E44A99BA}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,9 +15,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{ABA37BC6-0B44-4AE9-91E1-AAE455773508}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = NestSharp.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -37,16 +34,6 @@ Global
 		{96F98AA3-27FA-4A96-A4FF-47A32F03CC74}.Release|Mixed Platforms.Build.0 = Release|x86
 		{96F98AA3-27FA-4A96-A4FF-47A32F03CC74}.Release|x86.ActiveCfg = Release|x86
 		{96F98AA3-27FA-4A96-A4FF-47A32F03CC74}.Release|x86.Build.0 = Release|x86
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8A430DC3-6A00-4D70-A98B-E7C1D14FD116}.Release|x86.ActiveCfg = Release|Any CPU
 		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{ABA37BC6-0B44-4AE9-91E1-AAE455773508}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -60,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NestSharp.vsmdi
 	EndGlobalSection
 EndGlobal

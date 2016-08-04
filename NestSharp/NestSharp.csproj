@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NestSharp</RootNamespace>
     <AssemblyName>NestSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -32,16 +34,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,32 +54,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\AlarmState.cs" />
     <Compile Include="Api\AwayState.cs" />
-    <Compile Include="Api\BatteryHealth.cs" />
-    <Compile Include="Api\HvacMode.cs" />
-    <Compile Include="Api\ISmokeCo2Alarm.cs" />
-    <Compile Include="Api\IStructure.cs" />
+    <Compile Include="Api\INestApi.cs" />
+    <Compile Include="Api\INestAuthorization.cs" />
+    <Compile Include="Api\IRestClient.cs" />
     <Compile Include="Api\NestApi.cs" />
-    <Compile Include="Api\IThermostat.cs" />
-    <Compile Include="Api\Responses\Auth\AuthResponse.cs" />
-    <Compile Include="Api\Responses\Devices.cs" />
-    <Compile Include="Api\IDevices.cs" />
-    <Compile Include="Api\Responses\ErrorResponse.cs" />
+    <Compile Include="Api\NestAuthorization.cs" />
+    <Compile Include="Api\Requests\Eta.cs" />
+    <Compile Include="Api\Requests\StructureRequest.cs" />
+    <Compile Include="Api\Responses\AlarmState.cs" />
+    <Compile Include="Api\Responses\BatteryHealth.cs" />
     <Compile Include="Api\Responses\Eta.cs" />
-    <Compile Include="Api\IEta.cs" />
-    <Compile Include="Api\INestResponse.cs" />
-    <Compile Include="Api\Responses\NestResponse.cs" />
+    <Compile Include="Api\HvacMode.cs" />
+    <Compile Include="Api\Responses\HvacState.cs" />
     <Compile Include="Api\Responses\SmokeCo2Alarm.cs" />
     <Compile Include="Api\Responses\Structure.cs" />
-    <Compile Include="Api\Responses\Thermostat.cs" />
     <Compile Include="Api\TemperatureScale.cs" />
+    <Compile Include="Api\Responses\Thermostat.cs" />
+    <Compile Include="Api\RestClient.cs" />
+    <Compile Include="NestApiBuilder.cs" />
+    <Compile Include="Api\Requests\ThermostatRequest.cs" />
+    <Compile Include="Api\Responses\Authorization\AuthorizationResponse.cs" />
+    <Compile Include="Api\Responses\Devices.cs" />
     <Compile Include="NestException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
